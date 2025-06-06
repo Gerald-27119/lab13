@@ -65,7 +65,7 @@ pipeline {
                           -Dsonar.sources=. \
                           -Dsonar.host.url=${env.SONARQUBE_URL} \
                           -Dsonar.login=${env.SONAR_TOKEN}
-                          -Dsonar.javascript.lcov.reportPaths=coverage/unit/lcov.info
+                          -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
                       """,
                       returnStdout: false
                   )
