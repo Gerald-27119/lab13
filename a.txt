@@ -1,0 +1,31 @@
+1. Stworzenie (lub użycie) sieci Docker
+Sprawdź najpierw, czy w Twoim Dockerze istnieje już sieć, do której jest podłączony Jenkins. Jeśli uruchamiałeś/aś Jenkinsa poleceniem typu:
+
+bash
+Kopiuj
+Edytuj
+docker run -d --name jenkins -p 8080:8080 jenkins/jenkins:lts
+to najprawdopodobniej Jenkins jest w domyślnej sieci bridge. Żeby łatwo dodać SonarQube do tej samej sieci, zalecam utworzenie osobnej, nazwijmy ją cicd-network, i dołączenie do niej zarówno Jenkinsa, jak i SonarQube.
+
+Utwórz nową sieć (jeśli jeszcze nie istnieje):
+
+bash
+Kopiuj
+Edytuj
+docker network create cicd-network
+Jeżeli sieć o tej nazwie już była stworzona, dostaniesz informację, że sieć istnieje – w takim wypadku spokojnie możesz przejść dalej.
+
+Podłącz kontener Jenkins do tej sieci:
+
+bash
+Kopiuj
+Edytuj
+docker network connect cicd-network jenkins
+Dzięki temu Twój kontener jenkins – który działa już wcześniej – będzie członkiem sieci cicd-network. Teraz wszystkie pozostałe usługi, które wrzucisz do cicd-network, będą się z nim komunikować po DNS-owej nazwie kontenera (“jenkins”).
+
+Uwaga: Jeśli Twój kontener Jenkins miał jakieś inne ustawienia sieciowe (np. używał już innej, niestandardowej sieci), upewnij się, że
+
+ta sieć to faktycznie user-defined network (tj. nie “bridge”),
+
+że Jenkins ma ustawiony --network na tę sieć.
+W opisywanym scenariuszu zakładamy, że tworzymy nową sieć cicd-network i dopinamy pod nią istniejący kontener.
