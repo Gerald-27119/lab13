@@ -46,7 +46,7 @@ pipeline {
           always {
               publishHTML(target: [
                   reportDir: 'coverage/lcov-report',
-                  reportFiles: 'index.html',
+                  reportFiles: 'app.js.html',
                   reportName: 'Coverage Report'
                ])
           }
