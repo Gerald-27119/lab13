@@ -46,7 +46,7 @@ pipeline {
           always {
               publishHTML(target: [
                   reportDir: 'coverage/lcov-report',
-                  reportFiles: 'app.js.html',
+                  reportFiles: 'index.html',
                   reportName: 'Coverage Report'
                ])
           }
@@ -65,7 +65,6 @@ pipeline {
                           -Dsonar.sources=. \
                           -Dsonar.host.url=${env.SONARQUBE_URL} \
                           -Dsonar.login=${env.SONAR_TOKEN}
-                          -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
                       """,
                       returnStdout: false
                   )
