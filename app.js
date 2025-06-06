@@ -1,7 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const Redis = require('ioredis');
-
 const app = express();
 
 // // Zmienna sprawdzająca, czy jesteśmy w trybie testowym:
@@ -9,7 +6,6 @@ const isTest = process.env.NODE_ENV === 'test';
 
 app.get('/', async (req, res) => {
   try {
-
     res.json({ message: "Test message" });
   } catch (err) {
     res.status(500).json({ error: err.message });
