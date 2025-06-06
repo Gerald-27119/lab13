@@ -1,4 +1,7 @@
 pipeline {
+
+    agent any
+
   environment {
     SONARQUBE_SERVER = 'SonarQube'
     SONARQUBE_URL = 'http://sonarqube:9000'
