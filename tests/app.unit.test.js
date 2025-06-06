@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../../app');
+const app = require('../app');
 
 describe('Unit Test: GET /', () => {
   it('powinno zwrócić 200 i object z pola message', async () => {
