@@ -61,6 +61,7 @@ pipeline {
                  sh (
                      script: """
                           ${scannerHome}/bin/sonar-scanner \
+                          -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
                           -Dsonar.projectKey=your_project_key \
                           -Dsonar.sources=. \
                           -Dsonar.host.url=${env.SONARQUBE_URL} \
